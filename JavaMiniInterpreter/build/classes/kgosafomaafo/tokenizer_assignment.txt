@@ -1,0 +1,55 @@
+Write a simple program that takes a filename as parameter and
+prints out all the tokens in the file.
+
+The program should run from command line.
+e.g.
+>python myprogram.py sampleprogram1.txt
+e.g.
+>java -jar myprogram.jar sampleprogram1.txt
+e.g.
+>myprogram.exe sampleprogram.txt
+
+The tokens that are currently accepted are
+	VAR - a single letter (e.g. B D E z a f) //we are not doing variables with more than one character
+
+	NUM - a number (.e.g 123 43  543 ) //we are not doing decimal numbers yet
+	OP_EQUAL - the "=" character
+	OP_PLUS - the "+" character
+	OP_MINUS - the "-" character
+	OP_MULTIPLY - the "*" character
+	OP_DIVIDE - the "/" character
+	OP_SUBTRACT - the "-" character
+	COMMENT - the "#" character
+	END - Symbolizes end of the line (empty string)
+
+For example, if sample.txt contains
+A=B+10
+*/#$()AD123c
+
+then it should output as follows
+A=B+10
+
+        Token(VAR:A)
+        Token(OP_EQUAL:=)
+        Token(VAR:B)
+        Token(OP_PLUS:+)
+        Token(NUM:10)
+        Token(END:)
+
+*/#$()AD123c
+
+        Token(OP_MULTIPLY:*)
+        Token(OP_DIVIDE:/)
+        Token(COMMENT:#)
+        Token(UNKNOWN:$)
+        Token(UNKNOWN:()
+        Token(UNKNOWN:))
+        Token(VAR:A)
+        Token(VAR:D)
+        Token(NUM:123)
+        Token(VAR:c)
+        Token(END:)
+
+Please note the way the lines are being processed.
+After a line is read, it is printed.
+One empty line, then all the tokens are printed from the line.

@@ -1,0 +1,11 @@
+{ s.lname | R(s) and F(s) }
+{ s.lname | R(s) }
+{ t.name | S(t)}
+{ e.name, e.age, e.school |  R(e) }
+{b.age, c.name, b.school, c.money | S(b) and G(c)}
+{c | B(c) and c.age >= 50 }
+{b.age, c.name, b.school, c.money | S(b) and G(c) and c.name = "Dennis" and c.money = 50}
+{b.age, c.name, b.school, c.money | S(b) and G(c) and c.name = "Dennis" and b.money = 50}
+{c.fname, c.lname | B(c) and c.age >= 50 and c.age < 100}
+{c.fname, c.lname | B(c) and c.age >= 50 and c.age < 100 and c.id=12}
+{c.fname, c.lname | B(c) and c.age >= 50 and c.age < 100 or c.id=12}

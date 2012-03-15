@@ -1,0 +1,30 @@
+{ e.name, m | R(e) }
+{ a | R(s) }
+{ e, m.name | R(e) }
+{a,b | ^}
+{a,b | *}
+{a,b | *e ()}
+{a,b | (*e ())}
+{a,b | (*e)}
+{a,b | (*e) }
+{a,b | *e )}
+{a,b | *e (}
+{a b | T(a) }
+{ a | R(s) and t.name = 'francis'}
+{ a | R(s) and t.name = "francis"}
+{a | R(s) }
+{a | R }
+{a | R(a }
+{a | R(s) and t.name}
+{ a | R(s) and t.name = }
+{a | R(s) and t.age = 34}
+ t | R(t) 678 }
+{t.name - R(t)}
+{t, e g : | S(f)
+{t.id, 6gr e.fname | S(f)}
+{a.name, b.gender, c.lname | T(s) p}&
+{a.name T(s)}
+{a.name | T(s) | F}
+{,c | R(s)}
+{c.name, | R(s)}
+{b c.name | R(s) }
