@@ -11,10 +11,6 @@ package kgosafomaafo;
  */
 public class Formula2 extends Formula {
 
-    Token lhs = null; //left-hand-side
-    Token cop = null; //comparison operator
-    Token rhs = null; //right-hand-side
-
     public Formula2() {
         
     }

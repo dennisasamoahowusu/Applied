@@ -11,6 +11,10 @@ package kgosafomaafo;
  */
 public class Formula {
 
+    public Token lhs = null;
+    public Token cop = null;
+    public Token rhs = null;
+
     public enum Type {
             ONE,
             TWO,

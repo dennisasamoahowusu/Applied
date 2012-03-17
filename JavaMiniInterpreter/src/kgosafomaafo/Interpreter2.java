@@ -26,21 +26,50 @@ public class Interpreter2 {
         for (int i=0; i<this.tuples.length; i++) {
             if (this.tuples[i].selectedColumns != null) {
                 if (this.tuples[i].selectedColumns.length > 0) {
-                    columns += this.tuples[i].selectedColumns[0];
+                    columns += this.getRelationDotAttr(this.tuples[i].selectedColumns[0]);
                     for (int x = 1; x < this.tuples[i].selectedColumns.length; x++) {
-                        columns += "," + this.tuples[i].selectedColumns[x];
+                        columns += "," + this.getRelationDotAttr(this.tuples[i].selectedColumns[x]);
                     }
                     if (i != this.tuples.length - 1){
                         columns += ",";
                     }
                 }
-            }
-            if (columns.equals("")) {
-                columns = "all columns of "+this.tuples[i].relation;
+            } else {
+                columns += "all columns of "+this.tuples[i].relation;
+                if (i != this.tuples.length - 1){
+                    columns += ", ";
+                }
             }
         }
 
-        System.out.println(columns);
+        //System.out.println(columns);
+
+        String conditions = "";
+        boolean containsNull = false;
+
+        for (int i=0; i<this.parseObj.at.formulae.length; i++){
+            if (this.parseObj.at.formulae[i] == null) {
+                containsNull = true;
+            } else {
+                if (this.parseObj.at.formulae[i].type == Formula.Type.TWO) {
+                    conditions += this.getRelationDotAttr(this.parseObj.at.formulae[i].lhs) +
+                            this.parseObj.at.formulae[i].cop.value + this.parseObj.at.formulae[i].rhs.value;
+                    if (i < this.parseObj.at.lops.length){
+                        conditions += " " + this.parseObj.at.lops[i].value + " ";
+                    }
+                }
+            }
+        }
+
+        String translation = "";
+        if (containsNull){
+            translation = "Sorry, we are not doing nested formulae";
+        } else if (conditions.equals("")) {
+            translation = columns;
+        } else {
+            translation = columns + " where " + conditions;
+        }
+        System.out.println(translation);
     }
 
     private void setTuplesColumns() {
@@ -56,7 +85,7 @@ public class Interpreter2 {
     }
     
     private void setSelectedColumns(Tuple t) {
-        String[] columns = null;
+        Token[] columns = null;
         Token token;
         int counter = 0;
         int i = this.parseObj.bPosition;
@@ -70,7 +99,7 @@ public class Interpreter2 {
         } while(token.type != Token.Type.SEPARATOR && i <= this.parseObj.ePosition);
 
         if (counter > 0) {
-            columns = new String[counter];
+            columns = new Token[counter];
             Token token2;
             int x = this.parseObj.bPosition;
             int y = 0;
@@ -78,7 +107,7 @@ public class Interpreter2 {
                 token2 = this.parseObj.tokens[x];
                 if (token2.type == Token.Type.TUPLEATTR &&
                         token2.value.charAt(0) == t.token.value.charAt(0)) {
-                    columns[y] = token2.value;
+                    columns[y] = token2;
                     y++;
                 }
                 x++;

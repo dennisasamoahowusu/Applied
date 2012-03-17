@@ -54,6 +54,7 @@ public class Formula3 extends Formula {
         return this.lhs;
     }
 
+    @Override
     public Token getLop() {
         return this.lop;
     }

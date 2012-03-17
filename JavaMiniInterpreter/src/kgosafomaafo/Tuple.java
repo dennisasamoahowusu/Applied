@@ -13,7 +13,7 @@ public class Tuple {
 
     Token token;
     String relation;
-    public String[] selectedColumns = null;
+    public Token[] selectedColumns = null;
     String[] conditionColumns = null;
     String[] conditionOperators = null;
     //contains the conditions. Matches the conditionColumns
@@ -38,9 +38,9 @@ public class Tuple {
         }
     }
 
-    public void setSelectedColumns(String[] selectedColumns) {
+    public void setSelectedColumns(Token[] selectedColumns) {
         if (selectedColumns != null && selectedColumns.length > 0) {
-            this.selectedColumns = new String[selectedColumns.length];
+            this.selectedColumns = new Token[selectedColumns.length];
             System.arraycopy(selectedColumns, 0, this.selectedColumns, 0, selectedColumns.length);
         }
     }

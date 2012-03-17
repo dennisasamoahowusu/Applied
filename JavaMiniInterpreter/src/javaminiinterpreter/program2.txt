@@ -5,7 +5,7 @@
 { t.name | S(t)}
 { e.name, e.age, e.school |  R(e) }
 {b.age, c.name, b.school, c.money | S(b) and G(c)}
-{c | B(c) and c.age >= 50 }
+{c, e | B(c) and R(e) and c.age >= 50 }
 {b.age, c.name, b.school, c.money | S(b) and G(c) and c.name = "Dennis" and c.money = 50}
 {b.age, c.name, b.school, c.money | S(b) and G(c) and c.name = "Dennis" and b.money = 50}
 {c.fname, c.lname | B(c) and c.age >= 50 and c.age < 100}
